@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinStudioGradleExtension", "XamarinStudioGradleExtension\XamarinStudioGradleExtension.csproj", "{986C4EDE-0394-44BE-A4A1-01441FDD45FC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{986C4EDE-0394-44BE-A4A1-01441FDD45FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{986C4EDE-0394-44BE-A4A1-01441FDD45FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{986C4EDE-0394-44BE-A4A1-01441FDD45FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{986C4EDE-0394-44BE-A4A1-01441FDD45FC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = XamarinStudioGradleExtension\XamarinStudioGradleExtension.csproj
+	EndGlobalSection
+EndGlobal

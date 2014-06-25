@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{986C4EDE-0394-44BE-A4A1-01441FDD45FC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>XamarinStudioGradleExtension</RootNamespace>
+    <AssemblyName>XamarinStudioGradleExtension</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\Library\Application Support\XamarinStudio-5.0\LocalInstall\Addins\XamarinStudioGradleExtension</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="Execute" command="&quot;/Applications/Xamarin Studio.app/Contents/MacOS/lib/monodevelop/bin/XamarinStudio.exe&quot; --no-redirect" workingdir="/Applications/Xamarin Studio.app/Contents/MacOS/lib/monodevelop/bin" />
+      </CustomCommands>
+    </CustomCommands>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\Library\Application Support\XamarinStudio-5.0\LocalInstall\Addins\XamarinStudioGradleExtension</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="MonoDevelop.Ide">
+      <HintPath>..\..\..\..\..\Applications\Xamarin Studio.app\Contents\MacOS\lib\monodevelop\bin\MonoDevelop.Ide.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoDevelop.Core">
+      <HintPath>..\..\..\..\..\Applications\Xamarin Studio.app\Contents\MacOS\lib\monodevelop\bin\MonoDevelop.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FetchDependenciesHandler.cs" />
+    <Compile Include="GradleCommands.cs" />
+    <Compile Include="MavenLocalPublishHandler.cs" />
+    <Compile Include="MavenPublishHandlerBase.cs" />
+    <Compile Include="MavenPublishHandler.cs" />
+    <Compile Include="GradleProjectService.cs" />
+    <Compile Include="GradleBuilder.cs" />
+    <Compile Include="ProjectGradleInterface.cs" />
+    <Compile Include="ConfigurationProperties.cs" />
+    <Compile Include="ProjectProperties.cs" />
+    <Compile Include="ProjectOptionsPanel.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <EmbeddedResource Include="Manifest.addin.xml" />
+  </ItemGroup>
+</Project>

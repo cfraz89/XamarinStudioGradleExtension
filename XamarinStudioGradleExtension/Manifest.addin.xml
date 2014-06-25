@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Addin namespace   = "Trogdor.XamarinExtensions"
+       id          = "XamarinStudioGradleExtension"
+       name        = "Xamarin Studio Gradle Extension"
+       author      = "Chris Fraser"
+       copyright   = "MIT/X11"
+       url         = "http://www.monodevelop.com"
+       description = "Adds support for the xamarin gradle plugin"
+       category    = "Build Extensions"
+       version     = "1.0">
+
+    <Dependencies>
+        <Addin id="::MonoDevelop.Ide" version="5.0"/>
+		<Addin id="::MonoDevelop.Core" version="5.0" />
+    </Dependencies>
+
+    <!-- Fetch Dependencies -->
+    <Extension path = "/MonoDevelop/Ide/Commands/Edit">
+        <Command id = "XamarinStudioGradleExtension.GradleCommands.FetchDependencies"
+                 _label = "Fetch Dependencies"
+                 _description = "Fetch dependencies as specified in build.gradle"
+                 defaultHandler = "XamarinStudioGradleExtension.FetchDependenciesHandler"  />
+    </Extension>
+    <Extension path = "/MonoDevelop/Ide/MainMenu/Project">
+        <CommandItem id="XamarinStudioGradleExtension.GradleCommands.FetchDependencies" />
+    </Extension>
+	<Extension path="/MonoDevelop/Ide/ContextMenu/ProjectPad">
+		<Condition id="ItemType" value="Project">
+        	<CommandItem id="XamarinStudioGradleExtension.GradleCommands.FetchDependencies" />
+    	</Condition>
+    </Extension>
+
+     <!-- Publish to Maven Local -->
+    <Extension path = "/MonoDevelop/Ide/Commands/Edit">
+        <Command id = "XamarinStudioGradleExtension.GradleCommands.MavenLocalPublish"
+                 _label = "Publish to Maven Local"
+                 _description = "Publish build artifact dlls to Maven local"
+                 defaultHandler = "XamarinStudioGradleExtension.MavenLocalPublishHandler"  />
+    </Extension>
+    <Extension path = "/MonoDevelop/Ide/MainMenu/Project">
+        <CommandItem id="XamarinStudioGradleExtension.GradleCommands.MavenLocalPublish" />
+    </Extension>
+	<Extension path="/MonoDevelop/Ide/ContextMenu/ProjectPad">
+		<Condition id="ItemType" value="Project">
+        	<CommandItem id="XamarinStudioGradleExtension.GradleCommands.MavenLocalPublish" />
+    	</Condition>
+    </Extension>
+
+    <!-- Publish to Maven -->
+    <Extension path = "/MonoDevelop/Ide/Commands/Edit">
+        <Command id = "XamarinStudioGradleExtension.GradleCommands.MavenPublish"
+                 _label = "Publish to Maven"
+                 _description = "Publish build artifact dlls to maven"
+                 defaultHandler = "XamarinStudioGradleExtension.MavenPublishHandler"  />
+    </Extension>
+    <Extension path = "/MonoDevelop/Ide/MainMenu/Project">
+        <CommandItem id="XamarinStudioGradleExtension.GradleCommands.MavenPublish" />
+    </Extension>
+    <Extension path="/MonoDevelop/Ide/ContextMenu/ProjectPad">
+		<Condition id="ItemType" value="Project">
+        	<CommandItem id="XamarinStudioGradleExtension.GradleCommands.MavenPublish" />
+    	</Condition>
+    </Extension>
+
+    <!-- Project service -->
+    <Extension path = "/MonoDevelop/ProjectModel/ProjectServiceExtensions">
+		<Class class="XamarinStudioGradleExtension.GradleProjectService"/>
+	</Extension>
+
+	<!-- Project properties -->
+	<Extension path = "/MonoDevelop/ProjectModel/ExtendedProperties">
+		<ItemProperty class = "MonoDevelop.Projects.Project"
+		              name = "XamarinStudioGradleExtension.ProjectProperties"
+		              type = "XamarinStudioGradleExtension.ProjectProperties" />
+      <ItemProperty class = "MonoDevelop.Projects.ItemConfiguration"
+		              name = "XamarinStudioGradleExtension.ConfigurationProperties"
+		              type = "XamarinStudioGradleExtension.ConfigurationProperties" />
+	</Extension>
+
+	<!-- Project config panel -->
+	<Extension path = "/MonoDevelop/ProjectModel/Gui/ItemOptionPanels/Build">
+		<Condition id="ItemType" value="Project">
+				<Section id = "GradleProjectPanel"
+				             _label = "Gradle Settings"
+				             class = "XamarinStudioGradleExtension.ProjectOptionsPanel"/>
+		</Condition>
+	</Extension>
+</Addin>
