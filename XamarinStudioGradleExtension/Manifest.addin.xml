@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<Addin namespace   = "Trogdor.XamarinExtensions"
+<Addin namespace   = "XamarinStudioGradleExtension"
        id          = "XamarinStudioGradleExtension"
        name        = "Xamarin Studio Gradle Extension"
        author      = "Chris Fraser"
@@ -80,9 +80,25 @@
 	<!-- Project config panel -->
 	<Extension path = "/MonoDevelop/ProjectModel/Gui/ItemOptionPanels/Build">
 		<Condition id="ItemType" value="Project">
-				<Section id = "GradleProjectPanel"
+				<Section id = "GradleSettings"
 				             _label = "Gradle Settings"
+				             class = "XamarinStudioGradleExtension.GradleOptionsPanel"/>
+		</Condition>
+	</Extension>
+
+	<Extension path = "/MonoDevelop/ProjectModel/Gui/ItemOptionPanels/Build/GradleSettings">
+		<Condition id="ItemType" value="Project">
+				<Section id = "ProjectTargets"
+				             _label = "Project-wide Targets"
 				             class = "XamarinStudioGradleExtension.ProjectOptionsPanel"/>
+		</Condition>
+	</Extension>
+
+	<Extension path = "/MonoDevelop/ProjectModel/Gui/ItemOptionPanels/Build/GradleSettings">
+		<Condition id="ItemType" value="Project">
+				<Section id = "ConfigurationTargets"
+				             _label = "Configuration-specific Targets"
+				             class = "XamarinStudioGradleExtension.ConfigurationOptionsPanel"/>
 		</Condition>
 	</Extension>
 </Addin>

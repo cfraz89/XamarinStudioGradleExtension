@@ -12,7 +12,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\Library\Application Support\XamarinStudio-5.0\LocalInstall\Addins\XamarinStudioGradleExtension</OutputPath>
+    <OutputPath>..\..\..\..\Library\Application Support\XamarinStudio-5.0\LocalInstall\Addins\XamarinStudioGradleExtension</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -26,22 +26,24 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\Library\Application Support\XamarinStudio-5.0\LocalInstall\Addins\XamarinStudioGradleExtension</OutputPath>
+    <OutputPath>..\..\..\..\Library\Application Support\XamarinStudio-5.0\LocalInstall\Addins\XamarinStudioGradleExtension</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="MonoDevelop.Ide">
-      <HintPath>..\..\..\..\..\Applications\Xamarin Studio.app\Contents\MacOS\lib\monodevelop\bin\MonoDevelop.Ide.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoDevelop.Core">
-      <HintPath>..\..\..\..\..\Applications\Xamarin Studio.app\Contents\MacOS\lib\monodevelop\bin\MonoDevelop.Core.dll</HintPath>
-    </Reference>
     <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="Mono.Posix" />
+    <Reference Include="MonoDevelop.Core">
+      <HintPath>..\..\..\..\..\..\Applications\Xamarin Studio.app\Contents\MacOS\lib\monodevelop\bin\MonoDevelop.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoDevelop.Ide">
+      <HintPath>..\..\..\..\..\..\Applications\Xamarin Studio.app\Contents\MacOS\lib\monodevelop\bin\MonoDevelop.Ide.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -56,9 +58,21 @@
     <Compile Include="ConfigurationProperties.cs" />
     <Compile Include="ProjectProperties.cs" />
     <Compile Include="ProjectOptionsPanel.cs" />
+    <Compile Include="gtk-gui\generated.cs" />
+    <Compile Include="ProjectOptionsWidget.cs" />
+    <Compile Include="gtk-gui\XamarinStudioGradleExtension.ProjectOptionsWidget.cs" />
+    <Compile Include="ConfigurationOptionsWidget.cs" />
+    <Compile Include="gtk-gui\XamarinStudioGradleExtension.ConfigurationOptionsWidget.cs" />
+    <Compile Include="GradleOptionsPanel.cs" />
+    <Compile Include="GradleOptionsWidget.cs" />
+    <Compile Include="gtk-gui\XamarinStudioGradleExtension.GradleOptionsWidget.cs" />
+    <Compile Include="ConfigurationOptionsPanel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <EmbeddedResource Include="Manifest.addin.xml" />
+    <EmbeddedResource Include="gtk-gui\gui.stetic">
+      <LogicalName>gui.stetic</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
