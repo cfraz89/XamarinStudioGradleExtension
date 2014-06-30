@@ -96,9 +96,14 @@
 
 	<Extension path = "/MonoDevelop/ProjectModel/Gui/ItemOptionPanels/Build/GradleSettings">
 		<Condition id="ItemType" value="Project">
-				<Section id = "ConfigurationTargets"
+				<Section id="ConfigurationTargets"
 				             _label = "Configuration-specific Targets"
 				             class = "XamarinStudioGradleExtension.ConfigurationOptionsPanel"/>
 		</Condition>
 	</Extension>
+
+	<!-- Global settings -->
+	<Extension path="/MonoDevelop/Ide/GlobalOptionsDialog/Projects">
+    	<Section id="GradleGlobalSettings" _label="Gradle" class = "XamarinStudioGradleExtension.GlobalGradleOptionsPanel" />
+  	</Extension>
 </Addin>

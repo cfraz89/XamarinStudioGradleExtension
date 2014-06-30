@@ -67,6 +67,10 @@
     <Compile Include="GradleOptionsWidget.cs" />
     <Compile Include="gtk-gui\XamarinStudioGradleExtension.GradleOptionsWidget.cs" />
     <Compile Include="ConfigurationOptionsPanel.cs" />
+    <Compile Include="GlobalGradleOptionsWidget.cs" />
+    <Compile Include="gtk-gui\XamarinStudioGradleExtension.GlobalGradleOptionsWidget.cs" />
+    <Compile Include="GlobalGradleOptionsPanel.cs" />
+    <Compile Include="GlobalProperties.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

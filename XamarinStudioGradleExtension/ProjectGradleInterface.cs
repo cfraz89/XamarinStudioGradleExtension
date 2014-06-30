@@ -49,8 +49,8 @@ namespace XamarinStudioGradleExtension
 				properties = new ProjectProperties ().WithDefaultSettings();
 				properties.UseGradle = DetectedGradleFile;
 				mProject.ExtendedProperties ["XamarinStudioGradleExtension.ProjectProperties"] = properties;
+				SaveProject ();
 			}
-			mProject.Save (IdeApp.Workbench.ProgressMonitors.GetSaveProgressMonitor (false));
 			return properties;
 		}
 
@@ -60,10 +60,16 @@ namespace XamarinStudioGradleExtension
 			if (properties == null) {
 				properties = new ConfigurationProperties ().WithDefaultSettings(configuration);
 				configuration.ExtendedProperties ["XamarinStudioGradleExtension.ConfigurationProperties"] = properties;
+				SaveProject ();
 			}
+			return properties;
+		}
+
+		public void SaveProject() {
 			var saveMonitor = IdeApp.Workbench.ProgressMonitors.GetSaveProgressMonitor (false);
 			mProject.Save (saveMonitor);
-			return properties;
+			saveMonitor.EndTask ();
+			saveMonitor.Dispose ();
 		}
 	}
 }

@@ -7,6 +7,7 @@ namespace XamarinStudioGradleExtension
 	public class ProjectOptionsPanel : ItemOptionsPanel
 	{
 		ProjectOptionsWidget optionsWidget;
+		ProjectGradleInterface projectInterface;
 
 		public ProjectOptionsPanel ()
 		{
@@ -17,7 +18,7 @@ namespace XamarinStudioGradleExtension
 			optionsWidget = new ProjectOptionsWidget ();
 			optionsWidget.Show ();
 
-			var projectInterface = new ProjectGradleInterface (this.ConfiguredProject);
+			projectInterface = new ProjectGradleInterface (this.ConfiguredProject);
 			var properties = projectInterface.PropertiesForProject ();
 			optionsWidget.PublishLocalTarget = properties.PublishLocalTarget;
 			optionsWidget.PublishTarget = properties.PublishTarget;
@@ -32,24 +33,11 @@ namespace XamarinStudioGradleExtension
 
 		public override void ApplyChanges()
 		{
-
+			var properties = projectInterface.PropertiesForProject ();
+			properties.PublishLocalTarget = optionsWidget.PublishLocalTarget;
+			properties.PublishTarget = optionsWidget.PublishTarget;
+			projectInterface.SaveProject ();
 		}
-
-//		public override void LoadConfigData ()
-//		{
-//			var projectInterface = new ProjectGradleInterface (this.ConfiguredProject);
-//			var projectSettings = projectInterface.PropertiesForProject ();
-//			optionsWidget.UseGradle = projectSettings.UseGradle;
-//			optionsWidget.PublishLocalTarget = projectSettings.PublishLocalTarget;
-//			optionsWidget.PublishTarget = projectSettings.PublishTarget;
-
-//			var configs = this.CurrentConfigurations;
-//			if (configs.Length == 1) {
-//				var configSettings = projectInterface.PropertiesForConfiguration (configs [0]);
-//				optionsWidget.FetchTarget = configSettings.FetchDependenciesTarget;
-//			} else {
-//			}
-		//}
 	}
 }
 
