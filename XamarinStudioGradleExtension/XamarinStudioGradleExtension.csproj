@@ -24,9 +24,8 @@
     </CustomCommands>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>full</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\..\Library\Application Support\XamarinStudio-5.0\LocalInstall\Addins\XamarinStudioGradleExtension</OutputPath>
+    <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -79,4 +78,11 @@
       <LogicalName>gui.stetic</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <XamarinStudioGradleExtension.ProjectProperties UseGradle="False" PublishLocalTarget="publishToMavenLocal" PublishTarget="publish" />
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
 </Project>

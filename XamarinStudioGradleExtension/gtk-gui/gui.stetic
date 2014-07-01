@@ -5,7 +5,7 @@
     <target-gtk-version>2.12</target-gtk-version>
   </configuration>
   <import>
-    <widget-library name="../../../../../Library/Application Support/XamarinStudio-5.0/LocalInstall/Addins/XamarinStudioGradleExtension/XamarinStudioGradleExtension.dll" internal="true" />
+    <widget-library name="../bin/Release/XamarinStudioGradleExtension.dll" internal="true" />
   </import>
   <widget class="Gtk.Bin" id="XamarinStudioGradleExtension.ProjectOptionsWidget" design-size="381 300">
     <property name="MemberName" />
