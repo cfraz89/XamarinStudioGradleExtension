@@ -1,5 +1,6 @@
 ﻿using System;
 using MonoDevelop.Projects;
+using MonoDevelop.Ide;
 
 namespace XamarinStudioGradleExtension
 {
@@ -14,7 +15,7 @@ namespace XamarinStudioGradleExtension
 		{
 			var result = new BuildResult ();
 			//mdtool is derp, and it will still apply this plugin. That will cause a recursive compile. We don't want that.
-			if (monitor.GetType() != typeof(MonoDevelop.Core.ProgressMonitoring.ConsoleProgressMonitor)) {
+			if (IdeApp.IsInitialized) {
 				ItemConfiguration itemConfig = configuration.GetConfiguration (item);
 				var projectGradleInterface = new ProjectGradleInterface (item as Project);
 				try {

@@ -2,6 +2,7 @@
 using MonoDevelop.Projects;
 using MonoDevelop.Core;
 using MonoDevelop.Core.Execution;
+using MonoDevelop.IPhone;
 
 namespace XamarinStudioGradleExtension
 {
@@ -38,15 +39,33 @@ namespace XamarinStudioGradleExtension
 
 		public BuildResult Build()
 		{
-			var configuration = mConfiguration.GetConfiguration (mItem);
+			var configName = GetConfigurationString ();
 			mBuildResult = new BuildResult ();
 			mBuildResult.SourceTarget = mItem;
-			var processWrapper = Runtime.ProcessService.StartProcess ("/usr/local/bin/gradle", "xamarinBuild-" + configuration.Name, mItem.BaseDirectory, BuildOutputChanged, null);
+			var processWrapper = Runtime.ProcessService.StartProcess ("/usr/local/bin/gradle", "xamarinBuild-" + configName, mItem.BaseDirectory, BuildOutputChanged, null);
 			processWrapper.WaitForExit ();
 			var errorOutput = processWrapper.StandardError.ReadToEnd();
-			if (errorOutput.Length > 0)
+			if (errorOutput.Length > 0) {
 				mBuildResult.AddError (errorOutput);
+			}
 			return mBuildResult;
+		}
+
+		String GetConfigurationString ()
+		{
+			var configuration = mConfiguration.GetConfiguration (mItem);
+			String configurationName = configuration.Name;
+			var iPhoneProject = mItem as IPhoneProject;
+			if (iPhoneProject != null) {
+				var iPhoneConfiguration = iPhoneProject.GetConfiguration (mConfiguration) as IPhoneProjectConfiguration;
+				if (iPhoneConfiguration != null) {
+					if (iPhoneConfiguration.IsSimPlatform)
+						configurationName += "-iPhoneSimulator";
+					else if (iPhoneConfiguration.IsDevicePlatform)
+						configurationName += "iPhone";
+				}
+			}
+			return configurationName;
 		}
 	}
 }

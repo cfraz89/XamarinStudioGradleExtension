@@ -43,6 +43,15 @@
     <Reference Include="MonoDevelop.Ide">
       <HintPath>..\..\..\..\..\..\Applications\Xamarin Studio.app\Contents\MacOS\lib\monodevelop\bin\MonoDevelop.Ide.dll</HintPath>
     </Reference>
+    <Reference Include="MonoDevelop.IPhone">
+      <HintPath>..\..\..\..\..\..\Applications\Xamarin Studio.app\Contents\MacOS\lib\monodevelop\AddIns\MonoDevelop.IPhone\MonoDevelop.IPhone.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Ide">
+      <HintPath>..\..\..\..\..\..\Applications\Xamarin Studio.app\Contents\MacOS\lib\monodevelop\AddIns\Xamarin.Ide\Xamarin.Ide.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoDevelop.MacDev">
+      <HintPath>..\..\..\..\..\..\Applications\Xamarin Studio.app\Contents\MacOS\lib\monodevelop\AddIns\MonoDevelop.MacDev\MonoDevelop.MacDev.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
