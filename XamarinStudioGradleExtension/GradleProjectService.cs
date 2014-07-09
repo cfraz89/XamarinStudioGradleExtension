@@ -21,7 +21,7 @@ namespace XamarinStudioGradleExtension
 				try {
 					if (projectGradleInterface.PropertiesForProject ().UseGradle && itemConfig != null) {
 						//Now gradle will skip the build command itself for if it's an mdtool project
-						result.Append (new GradleBuilder (monitor, item, configuration).Build (true, null, true));
+						result.Append (new GradleBuilder (monitor, item, configuration).Build (true, null));
 						//so we can do it here
 						if (item.UseMSBuildEngine == null) 
 							result.Append (base.Build (monitor, item, configuration));
