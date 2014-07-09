@@ -5,8 +5,7 @@
     <target-gtk-version>2.12</target-gtk-version>
   </configuration>
   <import>
-    <widget-library name="../../../../../Library/Application Support/XamarinStudio-5.0/LocalInstall/Addins/XamarinStudioGradleExtension/XamarinStudioGradleExtension.dll" internal="true" />
-    <widget-library name="../../../../../../../Applications/Xamarin Studio.app/Contents/MacOS/lib/monodevelop/AddIns/MonoDevelop.IPhone/MonoDevelop.IPhone.dll" />
+    <widget-library name="../../../../../Library/Application Support/XamarinStudio-5.0/LocalInstall/Addins/XamarinStudioGradleExtension.XamarinStudioGradleExtension.1.0/XamarinStudioGradleExtension.dll" internal="true" />
   </import>
   <widget class="Gtk.Bin" id="XamarinStudioGradleExtension.ProjectOptionsWidget" design-size="381 300">
     <property name="MemberName" />
@@ -268,6 +267,7 @@
     <child>
       <widget class="Gtk.Table" id="table1">
         <property name="MemberName" />
+        <property name="NRows">2</property>
         <property name="NColumns">2</property>
         <property name="RowSpacing">6</property>
         <property name="ColumnSpacing">6</property>
@@ -292,11 +292,54 @@
           </packing>
         </child>
         <child>
+          <widget class="Gtk.CheckButton" id="configureOnDemandCheckbox">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="Label" translatable="yes" />
+            <property name="DrawIndicator">True</property>
+            <property name="HasLabel">False</property>
+            <property name="UseUnderline">True</property>
+          </widget>
+          <packing>
+            <property name="TopAttach">1</property>
+            <property name="BottomAttach">2</property>
+            <property name="LeftAttach">1</property>
+            <property name="RightAttach">2</property>
+            <property name="AutoSize">True</property>
+            <property name="YOptions">Fill</property>
+            <property name="XExpand">True</property>
+            <property name="XFill">True</property>
+            <property name="XShrink">False</property>
+            <property name="YExpand">False</property>
+            <property name="YFill">True</property>
+            <property name="YShrink">False</property>
+          </packing>
+        </child>
+        <child>
           <widget class="Gtk.Label" id="label1">
             <property name="MemberName" />
             <property name="LabelProp" translatable="yes">Gradle command</property>
           </widget>
           <packing>
+            <property name="AutoSize">True</property>
+            <property name="XOptions">Fill</property>
+            <property name="YOptions">Fill</property>
+            <property name="XExpand">False</property>
+            <property name="XFill">True</property>
+            <property name="XShrink">False</property>
+            <property name="YExpand">False</property>
+            <property name="YFill">True</property>
+            <property name="YShrink">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="label2">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Configure on demand</property>
+          </widget>
+          <packing>
+            <property name="TopAttach">1</property>
+            <property name="BottomAttach">2</property>
             <property name="AutoSize">True</property>
             <property name="XOptions">Fill</property>
             <property name="YOptions">Fill</property>

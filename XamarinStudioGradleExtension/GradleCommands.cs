@@ -4,7 +4,7 @@ namespace XamarinStudioGradleExtension
 {
 	public enum GradleCommands
 	{
-		FetchDependencies, MavenLocalPublish, MavenPublish
+		FetchDependencies, MavenLocalPublish, MavenPublish, DirectBuild
 	}
 }
 

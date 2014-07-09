@@ -1,6 +1,7 @@
 ﻿using System;
 using MonoDevelop.Projects;
 using MonoDevelop.Ide;
+using System.CodeDom.Compiler;
 
 namespace XamarinStudioGradleExtension
 {
@@ -10,7 +11,6 @@ namespace XamarinStudioGradleExtension
 		{
 		}
 
-
 		protected override BuildResult Build (MonoDevelop.Core.IProgressMonitor monitor, SolutionEntityItem item, ConfigurationSelector configuration)
 		{
 			var result = new BuildResult ();
@@ -19,14 +19,18 @@ namespace XamarinStudioGradleExtension
 				ItemConfiguration itemConfig = configuration.GetConfiguration (item);
 				var projectGradleInterface = new ProjectGradleInterface (item as Project);
 				try {
-					if (projectGradleInterface.PropertiesForProject ().UseGradle && itemConfig != null)
-						result.Append (new GradleBuilder (monitor, item, configuration).Build ());
+					if (projectGradleInterface.PropertiesForProject ().UseGradle && itemConfig != null) {
+						//Now gradle will skip the build command itself for if it's an mdtool project
+						result.Append (new GradleBuilder (monitor, item, configuration).Build (true, null, true));
+						//so we can do it here
+						if (item.UseMSBuildEngine == null) 
+							result.Append (base.Build (monitor, item, configuration));
+					} else
+						result.Append (base.Build (monitor, item, configuration));
 				} catch (Exception e) {
-				} finally {
-					result.Append (base.Build (monitor, item, configuration));
 				}
 			} else
-				result = base.Build (monitor, item, configuration);
+				result.Append(base.Build (monitor, item, configuration));
 
 			return result;
 		}

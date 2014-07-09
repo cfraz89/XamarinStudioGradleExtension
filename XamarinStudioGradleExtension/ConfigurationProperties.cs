@@ -15,7 +15,7 @@ namespace XamarinStudioGradleExtension
 
 		public ConfigurationProperties WithDefaultSettings(ItemConfiguration configuration)
 		{
-			FetchDependenciesTarget = "fetchXamarinDependencies-" + configuration.Name;
+			FetchDependenciesTarget = "installDependencies" + configuration.Name;
 			return this;
 		}
 	}

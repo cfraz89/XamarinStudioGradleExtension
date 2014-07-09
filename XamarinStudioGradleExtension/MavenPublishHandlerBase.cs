@@ -46,8 +46,11 @@ namespace XamarinStudioGradleExtension
 
 		protected override void Update (CommandInfo info)
 		{
-			var gradleInterface = new ProjectGradleInterface (IdeApp.ProjectOperations.CurrentSelectedProject);
-			info.Enabled = gradleInterface.DetectedGradleFile;
+			if (IdeApp.ProjectOperations.CurrentSelectedProject != null) {
+				var gradleInterface = new ProjectGradleInterface (IdeApp.ProjectOperations.CurrentSelectedProject);
+				info.Enabled = gradleInterface.PropertiesForProject ().UseGradle;
+			} else
+				info.Enabled = false;
 		}
 
 		public void Publish(Project project)

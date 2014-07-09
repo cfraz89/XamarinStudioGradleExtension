@@ -18,6 +18,15 @@ namespace XamarinStudioGradleExtension
 				commandEntry.Text = value;
 			}
 		}
+
+		public bool ConfigureOnDemand {
+			get {
+				return configureOnDemandCheckbox.Active;
+			}
+			set {
+				configureOnDemandCheckbox.Active = value;
+			}
+		}
 	}
 }
 

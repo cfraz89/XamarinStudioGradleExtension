@@ -37,13 +37,23 @@ namespace XamarinStudioGradleExtension
 			}
 		}
 
-		public BuildResult Build()
+		public GlobalProperties FetchProperties()
+		{
+			return PropertyService.Get (GlobalProperties.GLOBAL_PROPERTIES_PATH, new GlobalProperties ().WithDefaultValues ());
+		}
+
+		public BuildResult Build(bool fromIde, ProcessEventHandler exited, bool wait)
 		{
 			var configName = GetConfigurationString ();
 			mBuildResult = new BuildResult ();
 			mBuildResult.SourceTarget = mItem;
-			var processWrapper = Runtime.ProcessService.StartProcess ("/usr/local/bin/gradle", "xamarinBuild-" + configName, mItem.BaseDirectory, BuildOutputChanged, null);
-			processWrapper.WaitForExit ();
+
+			var properties = FetchProperties ();
+			var flags = properties.ConfigureOnDemand ? "--configure-on-demand " : "";
+			flags += fromIde ? "-Pide" : "";
+			var processWrapper = Runtime.ProcessService.StartProcess (properties.GradleCommand, flags + " build" + configName, mItem.BaseDirectory, BuildOutputChanged, exited);
+			if (wait)
+				processWrapper.WaitForExit ();
 			var errorOutput = processWrapper.StandardError.ReadToEnd();
 			if (errorOutput.Length > 0) {
 				mBuildResult.AddError (errorOutput);
@@ -60,12 +70,18 @@ namespace XamarinStudioGradleExtension
 				var iPhoneConfiguration = iPhoneProject.GetConfiguration (mConfiguration) as IPhoneProjectConfiguration;
 				if (iPhoneConfiguration != null) {
 					if (iPhoneConfiguration.IsSimPlatform)
-						configurationName += "-iPhoneSimulator";
+						configurationName += "iPhoneSimulator";
 					else if (iPhoneConfiguration.IsDevicePlatform)
 						configurationName += "iPhone";
 				}
 			}
 			return configurationName;
+		}
+
+		public BuildResult BuildResult {
+			get {
+				return mBuildResult;
+			}
 		}
 	}
 }

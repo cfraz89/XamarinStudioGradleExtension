@@ -22,9 +22,9 @@ namespace XamarinStudioGradleExtension
 		{
 			try {
 				if (mProcessWrapper.ExitCode == 0)
-					mProgressMonitor.ReportSuccess ("Fetch complete");
+					mProgressMonitor.ReportSuccess ("Install dependencies complete");
 				else
-					mProgressMonitor.ReportError ("Fetch error", new System.Exception("Fetch error"));
+					mProgressMonitor.ReportError ("Install dependencies error", new System.Exception("Fetch error"));
 			} catch (Exception ex) {
 				Console.Out.WriteLine(ex);
 			} finally {
@@ -35,14 +35,22 @@ namespace XamarinStudioGradleExtension
 
 		protected override void Update (CommandInfo info)
 		{
-			var gradleInterface = new ProjectGradleInterface (IdeApp.ProjectOperations.CurrentSelectedProject);
-			info.Enabled = gradleInterface.DetectedGradleFile;
+			if (IdeApp.ProjectOperations.CurrentSelectedProject != null) {
+				var gradleInterface = new ProjectGradleInterface (IdeApp.ProjectOperations.CurrentSelectedProject);
+				info.Enabled = gradleInterface.PropertiesForProject ().UseGradle;
+			} else
+				info.Enabled = false;
 		}
 
 		protected override void Run ()
 		{
 			var project = IdeApp.ProjectOperations.CurrentSelectedProject;
 			FetchDependencies (project, IdeApp.Workspace.ActiveConfiguration.GetConfiguration(project));
+		}
+
+		public GlobalProperties FetchProperties()
+		{
+			return PropertyService.Get (GlobalProperties.GLOBAL_PROPERTIES_PATH, new GlobalProperties ().WithDefaultValues ());
 		}
 
 		public void FetchDependencies(Project project, ItemConfiguration configuration)
@@ -53,7 +61,7 @@ namespace XamarinStudioGradleExtension
 
 			mProgressMonitor = IdeApp.Workbench.ProgressMonitors.GetBuildProgressMonitor ();
 			mProgressMonitor.BeginTask ("Fetch Dependencies", 1);
-			mProcessWrapper = MonoDevelop.Core.Runtime.ProcessService.StartProcess ("/usr/local/bin/gradle", configProperties.FetchDependenciesTarget, project.BaseDirectory, mProgressMonitor.Log, mProgressMonitor.Log, HandleProcessComplete);
+			mProcessWrapper = MonoDevelop.Core.Runtime.ProcessService.StartProcess (FetchProperties().GradleCommand, configProperties.FetchDependenciesTarget, project.BaseDirectory, mProgressMonitor.Log, mProgressMonitor.Log, HandleProcessComplete);
 		}
 	}
 }

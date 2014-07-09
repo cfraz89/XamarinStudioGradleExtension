@@ -8,7 +8,11 @@ namespace XamarinStudioGradleExtension
 		
 		private global::Gtk.Entry commandEntry;
 		
+		private global::Gtk.CheckButton configureOnDemandCheckbox;
+		
 		private global::Gtk.Label label1;
+		
+		private global::Gtk.Label label2;
 
 		protected virtual void Build ()
 		{
@@ -17,7 +21,7 @@ namespace XamarinStudioGradleExtension
 			global::Stetic.BinContainer.Attach (this);
 			this.Name = "XamarinStudioGradleExtension.GlobalGradleOptionsWidget";
 			// Container child XamarinStudioGradleExtension.GlobalGradleOptionsWidget.Gtk.Container+ContainerChild
-			this.table1 = new global::Gtk.Table (((uint)(1)), ((uint)(2)), false);
+			this.table1 = new global::Gtk.Table (((uint)(2)), ((uint)(2)), false);
 			this.table1.Name = "table1";
 			this.table1.RowSpacing = ((uint)(6));
 			this.table1.ColumnSpacing = ((uint)(6));
@@ -33,13 +37,37 @@ namespace XamarinStudioGradleExtension
 			w1.RightAttach = ((uint)(2));
 			w1.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table1.Gtk.Table+TableChild
+			this.configureOnDemandCheckbox = new global::Gtk.CheckButton ();
+			this.configureOnDemandCheckbox.CanFocus = true;
+			this.configureOnDemandCheckbox.Name = "configureOnDemandCheckbox";
+			this.configureOnDemandCheckbox.Label = "";
+			this.configureOnDemandCheckbox.DrawIndicator = true;
+			this.configureOnDemandCheckbox.UseUnderline = true;
+			this.table1.Add (this.configureOnDemandCheckbox);
+			global::Gtk.Table.TableChild w2 = ((global::Gtk.Table.TableChild)(this.table1 [this.configureOnDemandCheckbox]));
+			w2.TopAttach = ((uint)(1));
+			w2.BottomAttach = ((uint)(2));
+			w2.LeftAttach = ((uint)(1));
+			w2.RightAttach = ((uint)(2));
+			w2.YOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child table1.Gtk.Table+TableChild
 			this.label1 = new global::Gtk.Label ();
 			this.label1.Name = "label1";
 			this.label1.LabelProp = global::Mono.Unix.Catalog.GetString ("Gradle command");
 			this.table1.Add (this.label1);
-			global::Gtk.Table.TableChild w2 = ((global::Gtk.Table.TableChild)(this.table1 [this.label1]));
-			w2.XOptions = ((global::Gtk.AttachOptions)(4));
-			w2.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w3 = ((global::Gtk.Table.TableChild)(this.table1 [this.label1]));
+			w3.XOptions = ((global::Gtk.AttachOptions)(4));
+			w3.YOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child table1.Gtk.Table+TableChild
+			this.label2 = new global::Gtk.Label ();
+			this.label2.Name = "label2";
+			this.label2.LabelProp = global::Mono.Unix.Catalog.GetString ("Configure on demand");
+			this.table1.Add (this.label2);
+			global::Gtk.Table.TableChild w4 = ((global::Gtk.Table.TableChild)(this.table1 [this.label2]));
+			w4.TopAttach = ((uint)(1));
+			w4.BottomAttach = ((uint)(2));
+			w4.XOptions = ((global::Gtk.AttachOptions)(4));
+			w4.YOptions = ((global::Gtk.AttachOptions)(4));
 			this.Add (this.table1);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();

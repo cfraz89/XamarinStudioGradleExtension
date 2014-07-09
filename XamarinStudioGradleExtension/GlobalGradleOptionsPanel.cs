@@ -17,18 +17,20 @@ namespace XamarinStudioGradleExtension
 			var properties = FetchProperties ();
 			widget = new GlobalGradleOptionsWidget ();
 			widget.GradleCommand = properties.GradleCommand;
+			widget.ConfigureOnDemand = properties.ConfigureOnDemand;
 			return widget;
 		}
 
 		public GlobalProperties FetchProperties()
 		{
-			return PropertyService.Get ("XamarinStudioGradleExtension.GlobalProperties", new GlobalProperties ().WithDefaultValues ());
+			return PropertyService.Get (GlobalProperties.GLOBAL_PROPERTIES_PATH, new GlobalProperties ().WithDefaultValues ());
 		}
 
 		public override void ApplyChanges ()
 		{
 			var properties = FetchProperties ();
 			properties.GradleCommand = widget.GradleCommand;
+			properties.ConfigureOnDemand = widget.ConfigureOnDemand;
 		}
 	}
 }

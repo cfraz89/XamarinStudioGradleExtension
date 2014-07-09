@@ -9,16 +9,21 @@
        category    = "Build Extensions"
        version     = "1.0">
 
+    <Runtime>
+		<Import assembly="XamarinStudioGradleExtension.dll" />
+	</Runtime>
     <Dependencies>
         <Addin id="::MonoDevelop.Ide" version="5.0"/>
 		<Addin id="::MonoDevelop.Core" version="5.0" />
+        <Addin id="::MonoDevelop.IPhone" version="5.0" />
+        <Addin id="::MonoDevelop.MacDev" version="5.0" />
     </Dependencies>
 
     <!-- Fetch Dependencies -->
     <Extension path = "/MonoDevelop/Ide/Commands/Edit">
         <Command id = "XamarinStudioGradleExtension.GradleCommands.FetchDependencies"
-                 _label = "Fetch Dependencies"
-                 _description = "Fetch dependencies as specified in build.gradle"
+                 _label = "Install Dependencies"
+                 _description = "Install dependencies as specified in build.gradle"
                  defaultHandler = "XamarinStudioGradleExtension.FetchDependenciesHandler"  />
     </Extension>
     <Extension path = "/MonoDevelop/Ide/MainMenu/Project">
@@ -59,6 +64,22 @@
     <Extension path="/MonoDevelop/Ide/ContextMenu/ProjectPad">
 		<Condition id="ItemType" value="Project">
         	<CommandItem id="XamarinStudioGradleExtension.GradleCommands.MavenPublish" />
+    	</Condition>
+    </Extension>
+
+     <!-- Fetch Dependencies -->
+    <Extension path = "/MonoDevelop/Ide/Commands/Edit">
+        <Command id = "XamarinStudioGradleExtension.GradleCommands.DirectBuild"
+                 _label = "Gradle build"
+                 _description = "Build by directly invoking gradle"
+                 defaultHandler = "XamarinStudioGradleExtension.DirectBuildHandler"  />
+    </Extension>
+    <Extension path = "/MonoDevelop/Ide/MainMenu/Project">
+        <CommandItem id="XamarinStudioGradleExtension.GradleCommands.DirectBuild" />
+    </Extension>
+	<Extension path="/MonoDevelop/Ide/ContextMenu/ProjectPad">
+		<Condition id="ItemType" value="Project">
+        	<CommandItem id="XamarinStudioGradleExtension.GradleCommands.DirectBuild" />
     	</Condition>
     </Extension>
 

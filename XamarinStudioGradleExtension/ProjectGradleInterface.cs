@@ -49,7 +49,6 @@ namespace XamarinStudioGradleExtension
 				properties = new ProjectProperties ().WithDefaultSettings();
 				properties.UseGradle = DetectedGradleFile;
 				mProject.ExtendedProperties ["XamarinStudioGradleExtension.ProjectProperties"] = properties;
-				SaveProject ();
 			}
 			return properties;
 		}
@@ -60,7 +59,6 @@ namespace XamarinStudioGradleExtension
 			if (properties == null) {
 				properties = new ConfigurationProperties ().WithDefaultSettings(configuration);
 				configuration.ExtendedProperties ["XamarinStudioGradleExtension.ConfigurationProperties"] = properties;
-				SaveProject ();
 			}
 			return properties;
 		}
